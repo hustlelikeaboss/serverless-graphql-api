@@ -36,10 +36,10 @@ npm run deploy
 npm run deploy --stage production
 ```
 
-This will create the Lambda Function and API Gateway for GraphQL, together with two DynamoDB tables named `artists` and `songs`.**Note the API endpoint down** for use with the GrapiQL app below, which should be something like this: `https://absdi2i3y.execute-api.us-east-1.amazonaws.com/dev/graphql`. You can always find
+This will create the Lambda Function and API Gateway for GraphQL, together with two DynamoDB tables named `artists` and `songs`.**Note the API endpoint down** for use with the GrapiQL app below, which should be something like this: `https://[YOUR_LAMBDA_ID].execute-api.us-east-1.amazonaws.com/dev/graphql`. You can always find
 
-2. Run the same command above after infrastructure changes made to `serverless.yml`.
-3. Run the script below to quickly upload code changes:
+1. Run the same command above after infrastructure changes made to `serverless.yml`.
+2. Run the script below to quickly upload code changes:
 
 ```
 npm run deploy --function graphql
@@ -48,6 +48,13 @@ npm run deploy --function graphql
 [Other useful scripts](https://serverless.com/framework/docs/providers/aws/):
 
 ```bash
+# invoke lambda function locally
+serverless invoke local --function graphql --path lib/data/event.json
+
+# invoke deployed lambda function directly
+serverless invoke --function graphql --path lib/data/event.json
+
+# remove deployed stack
 serverless remove
 ```
 
