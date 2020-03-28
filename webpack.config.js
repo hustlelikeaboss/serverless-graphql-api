@@ -5,20 +5,23 @@ const slsw = require('serverless-webpack');
 module.exports = {
   entry: slsw.lib.entries,
   target: 'node',
+  mode: 'production',
   externals: [nodeExternals()],
   module: {
-    rules: [{
-      test: /\.js$/,
-      use: [
-        'imports-loader?graphql',
-        {
-          loader: 'babel-loader',
-          options: {
-            presets: ['es2015'],
+    rules: [
+      {
+        test: /\.js$/,
+        use: [
+          'imports-loader?graphql',
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: ['@babel/preset-env'],
+            },
           },
-        },
-      ],
-    }],
+        ],
+      },
+    ],
   },
   output: {
     libraryTarget: 'commonjs',
